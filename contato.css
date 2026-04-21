@@ -1,4 +1,4 @@
-/* Reset básico */
+/* ESTILIZAÇÃO */
 * {
     margin: 0;
     padding: 0;
@@ -161,21 +161,90 @@ p {
     color: #4A5759;
 }
 
-/* Mapa */
-.mapa-container {
-    border-radius: 16px;
-    overflow: hidden;
-    border: 4px solid var(--verde-folhas);
-    box-shadow: 0 6px 20px rgba(102, 163, 158, 0.3);
-    max-width: 800px;
-    margin: 0 auto;
+/* BOTÕES SOCIAIS */
+.social-botoes {
+    margin: 3rem 0;
+    text-align: center;
 }
 
-.mapa-container iframe {
+.social-botoes h4 {
+    margin-bottom: 1.5rem;
+}
+
+.botoes-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.btn-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    color: white;
+}
+
+.btn-social svg {
+    flex-shrink: 0;
     display: block;
 }
 
-/* Footer */
+.btn-social:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.btn-facebook {
+    background-color: var(--azul-gato);
+    border-color: var(--azul-gato);
+}
+
+.btn-facebook:hover {
+    background-color: var(--azul-contorno);
+    border-color: var(--azul-contorno);
+    color: var(--azul-gato);
+}
+
+.btn-instagram {
+    background-color: var(--laranja-focinho);
+    border-color: var(--laranja-focinho);
+}
+
+.btn-instagram:hover {
+    background-color: var(--amarelo-golden);
+    border-color: var(--amarelo-golden);
+    color: #4A5759;
+}
+
+.btn-email {
+    background-color: var(--verde-cia);
+    border-color: var(--verde-cia);
+}
+
+.btn-email:hover {
+    background-color: var(--verde-folhas);
+    border-color: var(--verde-folhas);
+    color: #4A5759;
+}
+
+/* MAPA */
+.mapa-container {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid var(--verde-folhas);
+    box-shadow: 0 4px 12px rgba(95, 166, 176, 0.25);
+    margin-bottom: 2rem;
+}
+
+/* FOOTER */
 footer {
     background-color: var(--verde-cia);
     color: white;
@@ -188,17 +257,22 @@ footer p {
     margin: 0;
     color: white;
     font-weight: 600;
+    max-width: none;
 }
 
-/* Responsivo */
+/* RESPONSIVO */
 @media (max-width: 768px) {
-    header { padding: 1rem; }
-    .logo-img { height: 70px; }
-    h2 { font-size: 2rem; }
-    nav { gap: 1.5rem; flex-wrap: wrap; }
-    nav a { font-size: 1.1rem; }
-    .container { padding: 0 1rem; }
-    .contatos-box { padding: 1.5rem; }
-    .contato-item { flex-direction: column; align-items: center; text-align: center; }
-    .contato-item p { text-align: center; }
+    .botoes-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-social {
+        width: 220px;
+        justify-content: center;
+    }
+    
+    .contatos-box {
+        grid-template-columns: 1fr;
+    }
 }
