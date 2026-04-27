@@ -18,9 +18,17 @@
                 <img src="img/logo-focinho-cia.png" alt="Logo Focinho e Cia - Voltar para página inicial" class="logo-img">
             </a>
         </div>
-        <nav>
+
+        <button class="menu-hamburger" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="menu-nav">
             <a href="quemSomos.html" class="active">Quem somos</a>
             <a href="servicos.html">Serviços</a>
+            <a href="produtos.html">Produtos</a>
             <a href="contato.html">Contato</a>
         </nav>
     </header>
@@ -30,7 +38,7 @@
             <h2>Nossa história começa com uma pata</h2>
 
             <p>
-                A Focinho e Cia nasceu em 2026, quando jovens estudantes universitários da Universidade Presibiteriana Mackenzie decidiram transformar 
+                A Focinho e Cia nasceu em 2026, quando jovens estudantes universitários da Universidade Presbiteriana Mackenzie decidiram transformar 
                 sua paixão pelos animais em um espaço acolhedor para todos os pets. Começamos como um 
                 pequeno banho e tosa no bairro e hoje somos referência em cuidado e bem-estar animal em Alphaville, Barueri - SP.
             </p>
@@ -56,22 +64,22 @@
             <h3>Nossos Valores</h3>
             <div class="valores">
                 <div class="valor-item">
-                    <span class="valor-icone"><img src="img/quemSomos/amor.png"></span>
+                    <span class="valor-icone"><img src="img/quemSomos/amor.png" alt="Ícone Amor"></span>
                     <h4>Amor</h4>
                     <p>Cada pet é único e merece atenção individual.</p>
                 </div>
                 <div class="valor-item">
-                    <span class="valor-icone"><img src="img/quemSomos/qualidade.png"></span>
+                    <span class="valor-icone"><img src="img/quemSomos/qualidade.png" alt="Ícone Qualidade"></span>
                     <h4>Qualidade</h4>
                     <p>Só trabalhamos com marcas premium e equipamentos esterilizados.</p>
                 </div>
                 <div class="valor-item">
-                    <span class="valor-icone"><img src="img/quemSomos/confianca.png"></span>
+                    <span class="valor-icone"><img src="img/quemSomos/confianca.png" alt="Ícone Confiança"></span>
                     <h4>Confiança</h4>
                     <p>Portas abertas e câmeras no banho e tosa para você acompanhar.</p>
                 </div>
                 <div class="valor-item">
-                    <span class="valor-icone"><img src="img/quemSomos/respeito.png"></span>
+                    <span class="valor-icone"><img src="img/quemSomos/respeito.png" alt="Ícone Respeito"></span>
                     <h4>Respeito</h4>
                     <p>Nada de pressa ou estresse. O bem-estar vem primeiro.</p>
                 </div>
@@ -80,8 +88,51 @@
     </main>
 
     <footer>
-        <p>© 2026 Focinho e Cia - Todos os focinhos merecem carinho </p>
+        <p>© 2026 Focinho e Cia - Todos os focinhos merecem carinho</p>
     </footer>
 
+    <!-- BOTÃO FLUTUANTE VOLTAR AO TOPO -->
+    <button class="topo-float" id="topo-float" aria-label="Voltar ao topo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+        <span class="topo-tooltip">Voltar ao topo</span>
+    </button>
+
+    <script>
+        // MENU SANDUÍCHE
+        const btnHamburger = document.querySelector('.menu-hamburger');
+        const menuNav = document.querySelector('.menu-nav');
+
+        btnHamburger.addEventListener('click', () => {
+            menuNav.classList.toggle('active');
+            btnHamburger.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.menu-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuNav.classList.remove('active');
+                btnHamburger.classList.remove('active');
+            });
+        });
+
+        // BOTÃO VOLTAR AO TOPO
+        const btnTopo = document.getElementById('topo-float');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                btnTopo.classList.add('visivel');
+            } else {
+                btnTopo.classList.remove('visivel');
+            }
+        });
+
+        btnTopo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
