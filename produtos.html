@@ -1,4 +1,90 @@
- <!-- BOTÃO FLUTUANTE VOLTAR AO TOPO -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="produtos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/logo-focinho-cia.png">
+    <title>Produtos - Focinho e Cia</title>
+</head>
+<body>
+
+    <header>
+        <div class="logo-header">
+            <a href="index.html" class="logo-link">
+                <img src="img/logo-focinho-cia.png" alt="Logo Focinho e Cia - Voltar para página inicial" class="logo-img">
+            </a>
+        </div>
+
+        <button class="menu-hamburger" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="menu-nav">
+            <a href="quemSomos.html">Quem somos</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="produtos.html" class="active">Produtos</a>
+            <a href="contato.html">Contato</a>
+        </nav>
+
+        <button class="carrinho-icon" id="abrir-carrinho" aria-label="Abrir carrinho">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="carrinho-contador">0</span>
+        </button>
+    </header>
+
+    <main>
+        <section class="container">
+            <h2>Nossa Lojinha Pet</h2>
+            <p>Rações premium, brinquedos educativos e acessórios exclusivos pro seu melhor amigo!</p>
+
+            <div class="filtros">
+                <button class="filtro-btn active" data-categoria="todos">Todos</button>
+                <button class="filtro-btn" data-categoria="racao">Rações</button>
+                <button class="filtro-btn" data-categoria="brinquedo">Brinquedos</button>
+                <button class="filtro-btn" data-categoria="acessorio">Acessórios</button>
+                <button class="filtro-btn" data-categoria="higiene">Higiene</button>
+            </div>
+
+            <div class="produtos-grid" id="lista-produtos">
+                <!-- Produtos carregados via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- CARRINHO LATERAL -->
+    <div class="carrinho-overlay" id="carrinho-overlay"></div>
+    <aside class="carrinho" id="carrinho">
+        <div class="carrinho-header">
+            <h3>Seu Carrinho</h3>
+            <button class="fechar-carrinho" id="fechar-carrinho">&times;</button>
+        </div>
+        <div class="carrinho-itens" id="carrinho-itens">
+            <p class="carrinho-vazio">Seu carrinho está vazio</p>
+        </div>
+        <div class="carrinho-footer">
+            <div class="carrinho-total">
+                <span>Total:</span>
+                <span id="carrinho-total">R$ 0,00</span>
+            </div>
+            <button class="btn-finalizar" id="finalizar-compra">Finalizar Compra</button>
+        </div>
+    </aside>
+
+    <footer>
+        <p>© 2026 Focinho e Cia - Todos os focinhos merecem carinho</p>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE VOLTAR AO TOPO -->
     <button class="topo-float" id="topo-float" aria-label="Voltar ao topo">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
             <path d="M18 15l-6-6-6 6"/>
@@ -14,6 +100,13 @@
         btnHamburger.addEventListener('click', () => {
             menuNav.classList.toggle('active');
             btnHamburger.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.menu-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuNav.classList.remove('active');
+                btnHamburger.classList.remove('active');
+            });
         });
 
         // PRODUTOS DA FOCINHO E CIA
@@ -36,7 +129,6 @@
         const carrinhoContador = document.querySelector('.carrinho-contador');
         const carrinhoEl = document.getElementById('carrinho');
         const overlay = document.getElementById('carrinho-overlay');
-        const btnTopo = document.getElementById('topo-float');
 
         // RENDERIZAR PRODUTOS
         function renderizarProdutos(categoria = 'todos') {
@@ -152,7 +244,20 @@
         document.getElementById('fechar-carrinho').addEventListener('click', fecharCarrinho);
         overlay.addEventListener('click', fecharCarrinho);
 
+        // FINALIZAR COMPRA
+        document.getElementById('finalizar-compra').addEventListener('click', () => {
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            const total = carrinho.reduce((sum, item) => sum + (item.preco * item.qtd), 0);
+            const mensagem = `Olá! Gostaria de finalizar meu pedido:\n\n${carrinho.map(item => `${item.qtd}x ${item.nome} - R$ ${(item.preco * item.qtd).toFixed(2)}`).join('\n')}\n\nTotal: R$ ${total.toFixed(2)}`;
+            window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(mensagem)}`, '_blank');
+        });
+
         // BOTÃO VOLTAR AO TOPO
+        const btnTopo = document.getElementById('topo-float');
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
                 btnTopo.classList.add('visivel');
@@ -166,20 +271,6 @@
                 top: 0,
                 behavior: 'smooth'
             });
-        });
-
-        // FINALIZAR COMPRA
-        document.getElementById('finalizar-compra').addEventListener('click', () => {
-            if (carrinho.length === 0) {
-                alert('Seu carrinho está vazio!');
-                return;
-            }
-            const total = carrinho.reduce((sum, item) => sum + (item.preco * item.qtd), 0);
-            alert(`Compra finalizada! Total: R$ ${total.toFixed(2).replace('.', ',')}\n\nObrigado por escolher a Focinho e Cia!`);
-            carrinho = [];
-            salvarCarrinho();
-            atualizarCarrinho();
-            fecharCarrinho();
         });
 
         // INICIALIZAR
