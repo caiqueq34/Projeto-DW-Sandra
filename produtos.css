@@ -1,0 +1,65 @@
+/* BOTÃO FLUTUANTE VOLTAR AO TOPO */
+.topo-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background-color: var(--laranja-focinho);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(232, 122, 62, 0.4);
+    z-index: 997;
+    transition: all 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.topo-float.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.topo-float:hover {
+    background-color: #d66a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(232, 122, 62, 0.6);
+}
+
+.topo-tooltip {
+    position: absolute;
+    right: 70px;
+    background: var(--marrom-chocolate);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.topo-float:hover .topo-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .topo-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .topo-tooltip {
+        display: none;
+    }
+}
