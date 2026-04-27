@@ -27,13 +27,15 @@ body {
 /* Header */
 header {
     background-color: var(--azul-contorno);
-    padding: 0.4rem 2rem; /* diminuí o padding vertical */
+    padding: 0.4rem 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0 3px 10px rgba(95, 166, 176, 0.2);
     border-bottom: 4px solid var(--verde-cia);
-    height: 80px; /* altura fixa menor que antes */
+    height: 80px;
+    position: relative;
 }
 
 .logo-header {
@@ -52,22 +54,53 @@ header {
 }
 
 .logo-img {
-    height: 80px; /* aumentei a logo */
+    height: 80px;
     width: auto;
     display: block;
-    margin-top: -5px; /* compensa pra logo "vazar" um pouco do header sem quebrar */
+    margin-top: -5px;
     margin-bottom: -5px;
 }
 
-nav {
+/* MENU SANDUÍCHE */
+.menu-hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.menu-hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--azul-gato);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.menu-hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.menu-nav {
     display: flex;
     gap: 2.5rem;
     align-items: center;
-    margin: 0 auto; /* Isso centraliza o menu no espaço que sobra */
-    padding-left: 75px; /* Compensa o tamanho da logo pra ficar visualmente centralizado */
+    margin: 0 auto;
+    padding-left: 75px;
 }
 
-nav a {
+.menu-nav a {
     color: var(--azul-gato);
     text-decoration: none;
     font-weight: 700;
@@ -79,7 +112,7 @@ nav a {
     letter-spacing: 0.5px;
 }
 
-nav a:hover, nav a.active {
+.menu-nav a:hover, .menu-nav a.active {
     color: var(--laranja-focinho);
     border-bottom: 3px solid var(--amarelo-estrelas);
 }
@@ -174,6 +207,59 @@ footer p {
     font-weight: 600;
 }
 
+/* BOTÃO FLUTUANTE VOLTAR AO TOPO */
+.topo-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background-color: var(--laranja-focinho);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(238, 140, 90, 0.4);
+    z-index: 997;
+    transition: all 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.topo-float.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.topo-float:hover {
+    background-color: #d66a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(238, 140, 90, 0.6);
+}
+
+.topo-tooltip {
+    position: absolute;
+    right: 70px;
+    background: var(--verde-cia);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.topo-float:hover .topo-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .menu-hamburger {
@@ -189,7 +275,7 @@ footer p {
         background-color: white;
         flex-direction: column;
         padding: 1rem 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0,0,0.1);
         z-index: 100;
     }
 
@@ -202,19 +288,25 @@ footer p {
         border-bottom: 1px solid #eee;
     }
 
-    .carrossel-slide img {
-        height: 250px;
+    header { 
+        padding: 0.3rem 1rem;
+        height: 70px;
     }
-
-    .carrossel-btn {
-        padding: 12px;
-        font-size: 14px;
+    .logo-img { 
+        height: 75px;
+        margin: -2px 0;
     }
-}@media (max-width: 768px) {
-    header { padding: 1rem; }
-    .logo-img { height: 70px; }
     h2 { font-size: 2rem; }
-    nav { gap: 1.5rem; flex-wrap: wrap; }
-    nav a { font-size: 1.1rem; }
     .container { padding: 0 1rem; }
+
+    .topo-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .topo-tooltip {
+        display: none;
+    }
 }
