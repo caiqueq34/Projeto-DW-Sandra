@@ -24,15 +24,16 @@ body {
     line-height: 1.7;
 }
 
-/* Header */
+/* Cabeçalho */
 header {
     background-color: var(--azul-contorno);
-    padding: 0.8rem 2rem;
+    padding: 0.4rem 2rem; /* diminuí o padding vertical */
     display: flex;
     flex-direction: row;
     align-items: center;
     box-shadow: 0 3px 10px rgba(95, 166, 176, 0.2);
     border-bottom: 4px solid var(--verde-cia);
+    height: 80px; /* altura fixa menor que antes */
 }
 
 .logo-header {
@@ -51,9 +52,11 @@ header {
 }
 
 .logo-img {
-    height: 75px;
+    height: 80px; /* aumentei a logo */
     width: auto;
     display: block;
+    margin-top: -5px; /* compensa pra logo "vazar" um pouco do header sem quebrar */
+    margin-bottom: -5px;
 }
 
 nav {
@@ -171,7 +174,43 @@ footer p {
     font-weight: 600;
 }
 
-/* Responsivo */
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .menu-hamburger {
+        display: flex;
+    }
+
+    .menu-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 100;
+    }
+
+    .menu-nav.active {
+        display: flex;
+    }
+
+    .menu-nav a {
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .carrossel-slide img {
+        height: 250px;
+    }
+
+    .carrossel-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
 @media (max-width: 768px) {
     header { padding: 1rem; }
     .logo-img { height: 70px; }
