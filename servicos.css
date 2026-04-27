@@ -24,7 +24,7 @@ body {
     line-height: 1.7;
 }
 
-/* Cabeçalho */
+/* Header */
 header {
     background-color: var(--azul-contorno);
     padding: 0.4rem 2rem; /* diminuí o padding vertical */
@@ -169,7 +169,7 @@ footer {
 }
 
 footer p {
-    margin: 0 auto;
+    margin: 0;
     color: white;
     font-weight: 600;
 }
@@ -210,8 +210,7 @@ footer p {
         padding: 12px;
         font-size: 14px;
     }
-}
-@media (max-width: 768px) {
+}@media (max-width: 768px) {
     header { padding: 1rem; }
     .logo-img { height: 70px; }
     h2 { font-size: 2rem; }
