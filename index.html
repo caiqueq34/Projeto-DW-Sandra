@@ -18,7 +18,14 @@
                 <img src="img/logo-focinho-cia.png" alt="Logo Focinho e Cia - Voltar para página inicial" class="logo-img">
             </a>
         </div>
-        <nav>
+
+        <button class="menu-hamburger" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="menu-nav">
             <a href="quemSomos.html">Quem somos</a>
             <a href="servicos.html">Serviços</a>
             <a href="contato.html">Contato</a>
@@ -37,25 +44,31 @@
                 com carinho, respeito e muita dedicação.
             </p>
 
-            <!-- GALERIA DE IMAGENS -->
-            <div class="imagens">
-                <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop" 
-                     alt="Cachorro feliz no banho">
+            <!-- CARROSSEL DE IMAGENS -->
+            <div class="carrossel">
+                <button class="carrossel-btn prev" aria-label="Imagem anterior">&#10094;</button>
                 
-                <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=800&auto=format&fit=crop" 
-                     alt="Gato brincando com novelo">
-                
-                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop" 
-                     alt="Produtos e acessórios pet">
-                
+                <div class="carrossel-container">
+                    <div class="carrossel-slide">
+                        <img src="img/index/1.jpeg" 
+                             alt="Cachorro feliz no banho">
+                        <img src="img/index/2.jpeg" 
+                             alt="Gato brincando com novelo">
+                        <img src="img/index/3.jpeg" 
+                             alt="Produtos e acessórios pet">
+                    </div>
+                </div>
+
+                <button class="carrossel-btn next" aria-label="Próxima imagem">&#10095;</button>
             </div>
 
             <!-- VÍDEO INSTITUCIONAL -->
             <h3>Conheça nosso espaço de banho e tosa</h3>
-            <video controls>
+            <video controls width="100%" preload="metadata" playsinline>
                 <source src="video/banhoetosa.mp4" type="video/mp4">
                 Seu navegador não suporta a reprodução de vídeo.
             </video>
+            <p class="fonte-video">Fonte: SHU AND TREE.</p>
         </section>
     </main>
 
@@ -63,5 +76,51 @@
         <p>© 2026 Focinho e Cia - Todos os focinhos merecem carinho</p>
     </footer>
 
+    <script>
+        // MENU SANDUÍCHE
+        const btnHamburger = document.querySelector('.menu-hamburger');
+        const menuNav = document.querySelector('.menu-nav');
+
+        btnHamburger.addEventListener('click', () => {
+            menuNav.classList.toggle('active');
+            btnHamburger.classList.toggle('active');
+        });
+
+        // Fecha menu ao clicar em um link
+        document.querySelectorAll('.menu-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuNav.classList.remove('active');
+                btnHamburger.classList.remove('active');
+            });
+        });
+
+        // CARROSSEL
+        const slide = document.querySelector('.carrossel-slide');
+        const images = document.querySelectorAll('.carrossel-slide img');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        
+        let currentIndex = 0;
+
+        function updateSlide() {
+            slide.style.transform = `translateX(${-currentIndex * 100}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateSlide();
+        });
+
+        // Auto-play opcional: tira o comentário se quiser passar sozinho a cada 4s
+        // setInterval(() => {
+        //     currentIndex = (currentIndex + 1) % images.length;
+        //     updateSlide();
+        // }, 4000);
+    </script>
 </body>
 </html>
