@@ -28,6 +28,7 @@
         <nav class="menu-nav">
             <a href="quemSomos.html">Quem somos</a>
             <a href="servicos.html">Serviços</a>
+            <a href="produtos.html">Produtos</a>
             <a href="contato.html">Contato</a>
         </nav>
     </header>
@@ -76,6 +77,14 @@
         <p>© 2026 Focinho e Cia - Todos os focinhos merecem carinho</p>
     </footer>
 
+    <!-- BOTÃO FLUTUANTE VOLTAR AO TOPO -->
+    <button class="topo-float" id="topo-float" aria-label="Voltar ao topo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+        <span class="topo-tooltip">Voltar ao topo</span>
+    </button>
+
     <script>
         // MENU SANDUÍCHE
         const btnHamburger = document.querySelector('.menu-hamburger');
@@ -114,6 +123,24 @@
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             updateSlide();
+        });
+
+        // BOTÃO VOLTAR AO TOPO
+        const btnTopo = document.getElementById('topo-float');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                btnTopo.classList.add('visivel');
+            } else {
+                btnTopo.classList.remove('visivel');
+            }
+        });
+
+        btnTopo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
         // Auto-play opcional: tira o comentário se quiser passar sozinho a cada 4s
