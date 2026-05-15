@@ -93,22 +93,7 @@
     </button>
 
     <script>
-        // MENU SANDUÍCHE
-        const btnHamburger = document.querySelector('.menu-hamburger');
-        const menuNav = document.querySelector('.menu-nav');
-
-        btnHamburger.addEventListener('click', () => {
-            menuNav.classList.toggle('active');
-            btnHamburger.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.menu-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuNav.classList.remove('active');
-                btnHamburger.classList.remove('active');
-            });
-        });
-
+        
         // PRODUTOS DA FOCINHO E CIA
         const produtos = [
             { id: 1, nome: "Ração Premium Cães Adultos 15kg", preco: 189.90, categoria: "racao", img: "img/produtos/racaocachorro.png" },
@@ -277,6 +262,22 @@
         // INICIALIZAR
         renderizarProdutos();
         atualizarCarrinho();
+
+        // MENU SANDUÍCHE
+        const btnHamburger = document.querySelector('.menu-hamburger');
+        const menuNav = document.querySelector('.menu-nav');
+
+        btnHamburger.addEventListener('click', () => {
+            menuNav.classList.toggle('active');
+            btnHamburger.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.menu-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuNav.classList.remove('active');
+                btnHamburger.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
