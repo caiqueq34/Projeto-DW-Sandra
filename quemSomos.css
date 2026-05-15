@@ -148,6 +148,7 @@ p {
     max-width: 850px;
     margin: 0 auto 2.5rem auto;
     color: #5A6A6C;
+    text-align: justify;
 }
 
 /* Grid de imagens */
